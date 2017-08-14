@@ -13,11 +13,11 @@ int main (int argc, char** argv){
 			a[j]=j*i;
 			cout<<a[j];
 		}
-		tam=sizeof(a);
+		//tam=sizeof(a);
 		delete a;	
 		
 	}
-		tam= tam+ sizeof(n)+sizeof(i)+sizeof(j);
+		tam= tam+ sizeof(n)+sizeof(i)*n+sizeof(j)*n;
 		cout<<" "<<tam;
 	
 }
