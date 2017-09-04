@@ -55,17 +55,21 @@ void ordenrapido(int a[], int izq, int der){
 int main (int argc, char** argv){
 	cout<<"Ingresa el tamanyo del array"<<endl;
     cin >> N;
-    int a[N];
-//    int a[50]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50};
+    int a[N], i;
+//    ORDENADO
+//	for(i = 1; i <= N; i++){
+//		a[i] = i;
+//	}
+//	DESORDENADO
     srand(time(NULL));
-    for (int i = 0; i < N; i++) {
-        a[i] = rand() % 100;
+    for (i = 1; i <= N; i++) {
+        a[i] = rand() % 200;
     }
     StartCounter();
-    ordenrapido(a, 0, N);
+    ordenrapido(a, 1, N);
     cout << GetCounter() <<"\n";
-    for(int i=0; i<N; i++){
-		cout<<a[i]<<"-";
+    for(i = 1; i <= N; i++){
+		cout<<a[i]<<"  ";
 	}
 }
 
