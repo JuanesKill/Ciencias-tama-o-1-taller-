@@ -76,6 +76,12 @@ void imprimirEst(estr<W,T,S,TP,TR,SR,TL,SL,FL,T1,TH,SH,TG,SG,E,TQ,SQ,B,TZ,SZ,TV,
 
 int main(){
 	estr<int,int,char,float,int,char,float,int,int,char,char,float,int,int,int,float,float,char,float,char,char,char> estruc;
+	
+	//estruc.s.w= new w <int>;
+	estruc.q.g.f1 = new uno<int,int> ;
+	estruc.q.d.c.z = new uno<float,char> ;
+		
+	
 	//estruc.s.w=3;
 	estruc.s.U.x=6;
 	estruc.s.U.y='r';
