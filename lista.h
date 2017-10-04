@@ -32,7 +32,7 @@ class Lista{
 	void Lista<T>::insertar_final(nodo<T> *info){
 		
 		nodo<T> *aux;
-		aux=cabeza;
+		aux=cabeza->sig;
 		if(cabeza!=NULL){
 			while(aux->sig){
 				aux= aux->sig;
@@ -40,6 +40,7 @@ class Lista{
 			aux->sig=info;
 			info->sig=NULL;
 		}else{
+			info->sig=cabeza;
 			cabeza=info;
 		}
 		tam++;
@@ -51,30 +52,27 @@ class Lista{
 		if(pos<=1){
 			insertar_inicio(info);
 		}else{
-			if(pos>tam){
+			if(pos>=tam){
 				insertar_final(info);
 			} 
-			else{ for(int i=0;i<pos;i++){
-						aux= aux->sig;
-						info->sig=aux->sig;
-						aux->sig=info;				
-					}	
+			else{ 	for(int i=2;i<pos;i++){
+						aux= aux->sig;			
+					}
+					info->sig=aux->sig;
+					aux->sig=info;
+					tam++;
 				}	
 		}
-		tam++;
+		
 	}
 	template <class T>
 	T Lista<T>:: consultar(int pos){
 		nodo<T> *aux;
 		aux=cabeza;
-		if(tam=1){
-			return aux->dato;
-		}else{
-		
 		if(pos>tam || pos==0){
 			return 0;
 			}else{
-				int i=0;
+				int i=1;
 				while(aux!=NULL && i<pos){
 					aux=aux->sig;
 					i++;	
@@ -82,19 +80,54 @@ class Lista{
 			return aux->dato;
 		}
 	}
-	}	
-/*	template <class T>
+	
+	template <class T>
 	T Lista<T>:: eliminar_inicio(){
-		cabeza=	
+		nodo<T> *aux;
+		aux=cabeza;
+		cabeza=cabeza->sig;
+		aux=NULL;
+		tam--;	
+		return cabeza->dato;
 	
-	}*/
-		
-		
-		
-		
-		
-	
-	
-
-
-#endif
+	}
+	template <class T>
+	T Lista <T>:: eliminar_final(){
+		nodo<T> *aux;
+		aux=cabeza;
+		if(cabeza!=NULL){
+			int i=2;
+			while(i<tam){
+				aux= aux->sig;
+				i++;
+				}
+			aux->sig=NULL;
+		}else{
+			return 0;
+		}
+		tam--;
+	}
+	template <class T>
+	T Lista<T>:: eliminar_pos(int pos){
+		nodo<T> *aux;
+		nodo<T> *aux2;
+		aux=cabeza;
+		aux2=cabeza->sig;
+		if(pos<=1){
+			eliminar_inicio();
+		}else{
+			if(pos>=tam){
+				eliminar_final();
+			} 
+			else{ 	int i=2;
+					while(i<pos){
+						aux= aux->sig;
+						aux2= aux2->sig;
+						i++;
+					}
+					aux->sig=aux2->sig;
+					aux2=NULL;
+					tam--;
+				}	
+		}
+	}
