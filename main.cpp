@@ -5,6 +5,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+	////////LLENAR LISTA////////
 	Lista <int> lent;
 	nodo <int> *nuevo;
 	nuevo= new nodo <int>;
@@ -25,10 +26,35 @@ int main(int argc, char** argv) {
 	nodo<int> *nuevo3;
 	nuevo3 = new nodo <int>;
 	nuevo3->dato=12;
-	lent.insertar_pos(nuevo3,3);
+	lent.insertar_pos(nuevo3,2);
+	////////CONSULTAR////////
 	cout<<lent.consultar(1)<<" ";
 	cout<<lent.consultar(2)<<" ";
 	cout<<lent.consultar(3)<<" ";
 	cout<<lent.consultar(4)<<endl;
+	
+//	lent.lista_vacia();
+//	cout<<lent.consultar(1)<<" ";
+//	cout<<lent.consultar(2)<<" ";
+//	cout<<lent.consultar(3)<<" ";
+//	cout<<lent.consultar(4)<<endl;
+//	lent.eliminar_final();
+//	cout<<lent.consultar(1)<<" ";
+//	cout<<lent.consultar(2)<<" ";
+//	cout<<lent.consultar(3)<<" ";
+//	cout<<lent.consultar(4)<<endl;	
+
+//	lent.eliminar_pos(2);
+//	cout<<lent.consultar(1)<<" ";
+//	cout<<lent.consultar(2)<<" ";
+//	cout<<lent.consultar(3)<<" ";
+//	cout<<lent.consultar(4)<<endl;
+	lent.eliminar_inicio();
+	cout<<lent.consultar(1)<<" ";
+	cout<<lent.consultar(2)<<" ";
+	cout<<lent.consultar(3)<<" ";
+	cout<<lent.consultar(4)<<endl;
+	
+	cout<<lent.tamano_lista()<<endl;
 	return 0;
 }
