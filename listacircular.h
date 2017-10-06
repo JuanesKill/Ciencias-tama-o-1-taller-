@@ -26,8 +26,9 @@ class Lista{
 		T eliminar_inicio();
 		T eliminar_final();
 		T eliminar_pos(int pos);
-		T tamano_lista();
-		T lista_vacia();
+		int tamano_lista();
+	//	T lista_vacia();
+		bool lista_vacia();
 };
 	template <class T>
 	void Lista<T>::insertar_inicio(nodo<T> *info){
@@ -85,7 +86,7 @@ class Lista{
 		nodo<T> *aux;
 		aux=cabeza;
 		if(pos>tam || pos==0 || aux==NULL){
-			return 0;
+			return aux->dato;
 			}else{
 				int i=1;
 				while(i<pos){
@@ -96,7 +97,7 @@ class Lista{
 		}
 	}
 	template <class T>
-	T Lista<T>:: tamano_lista(){
+	int Lista<T>:: tamano_lista(){
 		return tam;
 	}
 		
@@ -118,41 +119,55 @@ class Lista{
 	template <class T>
 	T Lista<T>:: eliminar_inicio(){
 		nodo<T> *aux;
+		T dato;
 		if(cabeza!=NULL && tam>1){
 			aux=cabeza->sig;
 			aux->ant=z;
 			z->sig=aux;
+			dato= cabeza->dato;
 			cabeza=NULL;
 			cabeza=aux;
+			tam--;
+			return dato;
 		}else{
-			return 0;
+			dato=cabeza->dato;
+			cabeza=z=NULL;
+			tam--;
+			return dato;
 		}
 		tam--;	
-	
+		return 0;
 	}
 	
 	template <class T>
 	T Lista <T>:: eliminar_final(){
 		nodo<T> *aux;
 		aux=cabeza;
+		T dato;
 		if(cabeza!=NULL){
 			int i=2;
 			while(i<tam){
 				aux= aux->sig;
 				i++;
-				}
+			}
 			cabeza->ant=aux;
-			aux->sig=cabeza;	
+			aux->sig=cabeza;
+			dato=z->dato;
 			z=NULL;
 			z=aux;
+			tam--;
+			return dato;
+			
 		}else{
 			return 0;
 		}
 		tam--;
+		return 0;
 	}
 	
 	template <class T>
 	T Lista<T>:: eliminar_pos(int pos){
+		T dato;
 		nodo<T> *aux;
 		nodo<T> *aux2;
 		nodo<T> *aux3;
@@ -160,10 +175,10 @@ class Lista{
 		aux2=cabeza->sig;
 		aux3=aux2->sig;
 		if(pos<=1){
-			eliminar_inicio();
+			dato= eliminar_inicio();
 		}else{
 			if(pos>=tam){
-				eliminar_final();
+				dato= eliminar_final();
 			} 
 			else{ 	int i=2;
 					while(i<pos){
@@ -174,19 +189,32 @@ class Lista{
 					}
 					aux->sig=aux2->sig;
 					aux3->ant=aux2->ant;
+					dato=aux2->dato;
 					aux2=NULL;
 					tam--;
+					return dato;
 				}	
 		}
 	}
+//	template<class T>
+//	T Lista<T>:: lista_vacia(){
+//		int i=0;
+//		while(i<tam+1){
+//			eliminar_final();
+//			i++;
+//			}
+//		tam=0;
+//		return 0;
+//	}
 	template<class T>
-	T Lista<T>:: lista_vacia(){
-		int i=0;
-		while(i<tam+1){
-			eliminar_final();
-			i++;
-			}
-		tam=0;
+	bool Lista<T>:: lista_vacia(){
+		if(tam==0){
+			return true;
+		}else{
+			return false;
+		}
+		return false;
 	}
+	
 	
 #endif
