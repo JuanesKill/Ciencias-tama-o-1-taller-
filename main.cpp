@@ -1,80 +1,119 @@
+#include <cstdlib>
 #include <iostream>
-#include "listacircular.h"
-#include <stdio.h>
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-using namespace std;
-struct Estud{
-	string nombre;
-	long int codigo;
-	string carrera;
-};
+#include <ctype.h>
+#include <iomanip>
+#include "pila.h"
+#include "cola.h"
 
-int main(int argc, char** argv) {
-	/*Lista <int> lint;
-	Lista <float> lfloat;
-	nodo <int> *nuevo;
-	nuevo= new nodo <int>;
-	nuevo->dato=3;
-	nodo <int> *nuevo1;
-	nuevo1= new nodo <int>;
-	nuevo1->dato=8;
-	nodo <int> *nuevo2;
-	nuevo2= new nodo <int>;
-	nuevo2->dato=10;	
-	nodo <float> *nuevo3;
-	nuevo3= new nodo <float>;
-	nuevo3->dato=3.5;
-	nodo <float> *nuevo4;
-	nuevo4= new nodo <float>;
-	nuevo4->dato=8.2;
-	nodo <float> *nuevo5;
-	nuevo5= new nodo <float>;
-	nuevo5->dato=3.3;
-	lint.insertar_final(nuevo);
-	lint.insertar_inicio(nuevo1);
-	lint.insertar_pos(nuevo2,2);
-	lfloat.insertar_inicio(nuevo3);
-	lfloat.insertar_final(nuevo4);
-	lfloat.insertar_pos(nuevo5,2);
-	int i=1;
-	while(!lint.lista_vacia()){
-		cout<<lint.eliminar_pos(i);
+using namespace std;
+
+Reemplazar(pila Pila1,int viejo, int nuevo){
+	cola Cola;
+	pila Pila=Pila1;
+	while(Pila.PilaVacia()==false){
+			int x=Pila.Pop()-48;
+			if(x==viejo){
+				Cola.InsCola(nuevo+48);
+			}else{
+				Cola.InsCola(x+48);
+			}
 	}
-	system("pause");
-	cout<<lfloat.consultar(1);
-/*	while(!lfloat.lista_vacia()){
-		cout<< lfloat.eliminar_pos(i)<<" ";
-	}
-	cout<<lfloat.eliminar_pos(1);
-	*/
-	nodo <Estud> *a;
-	a= new nodo <Estud>;
-	nodo <Estud> *a1;
-	a1= new nodo <Estud>;
-	nodo <Estud> *a2;
-	a2= new nodo <Estud>;
-	Lista<Estud> lestud;
-	a->dato.nombre="pedro";
-	a->dato.codigo=20151020;
-	a->dato.carrera="sistemas";
-	lestud.insertar_pos(a,1);
-	a1->dato.nombre="juan";
-	a1->dato.codigo=2014204;
-	a1->dato.carrera="electrica";
-	lestud.insertar_inicio(a1);
-	a2->dato.nombre="daniel";
-	a2->dato.codigo=2012204;
-	a2->dato.carrera="industrial";
-	lestud.insertar_final(a2);
-	int i=1;
-	while(i<=lestud.tamano_lista()){
-		nodo <Estud> *resul;
-		resul= new nodo <Estud>;
-		resul->dato= lestud.consultar(i);
-		cout<< resul->dato.nombre;
-		i++;
-		delete resul;
-	}
-		
+	
+	Cola.ImprimirCola();
 	return 0;
 }
+/*
+Organizar(pila Pila1, pila Pila2){
+	pila pilaa=Pila1;
+	pila pilad=Pila2;
+	pila pilaor;
+	while(pilaa.PilaVacia()==false){
+			int x=pilaa.Pop()-48;
+			int y=pilad.Pop()-48;
+			int i=0;
+			cout<<"hola1";
+			while(pilad.PilaVacia()==false){
+				pilaa.Push(y+48);
+				y=pilad.Pop()-48;
+				i++;
+				cout<<"hola2";
+			}
+			if(x<=y){
+				pilaor.Push(x+48);
+				cout<<"hola3";
+			}else{
+				pilaor.Push(y+48);
+				i--;
+				cout<<"hola4";
+			}
+			for(int j=0;j<i;j++){
+				cout<<"hola5";
+				pilad.Push(pilaa.Pop());
+			}
+	}
+	cout<<"hola";
+	while(pilaor.PilaVacia()==false){
+		cout<<pilaor.Pop();
+	}
+}*/
+Factorial(int n){
+	int x=1;
+	pila pilafac;
+	for(int i=1;i<=n;i++){
+		pilafac.Push(i+48);
+	}
+	while(pilafac.PilaVacia()==false){
+		x=x*(pilafac.Pop()-48);
+	}
+	cout<<x;
+}
+
+
+Palindromo(char cadena[]){
+	pila Pila;
+	int i=0;
+	char y;
+	while(cadena!=""){
+		Pila.Push(cadena[i]);
+		i++;	
+	}
+	if((i % 2)==0){
+		char x=Pila.Pop();
+		//Palindromo(cadena[1,i-1]);
+		for(int j=0;j<i-1;j++){
+			 y=Pila.Pop();
+		}
+		if(x==y){
+			cout<<"es una cadena palindroma";
+		}else{
+			cout<<"no es palindroma";
+		}	
+	}	
+}
+
+int main(int argc, char *argv[])
+{ 
+//	pila Pila; 
+//	Pila.Push('3');
+//	Pila.Push('5');
+//	Pila.Push('2');
+//	Pila.Push('3');
+//	Reemplazar(Pila,3,7);
+//	pila Pila; 
+//	Pila.Push('1');
+//	Pila.Push('2');
+//	Pila.Push('3');
+//	Pila.Push('4');
+//	pila Pila1; 
+//	Pila1.Push('10');
+//	Pila1.Push('9');
+//	Pila1.Push('8');
+//	Pila1.Push('7');	
+//	Organizar(Pila,Pila1);
+//	Factorial(6);
+	char cadena[]="poop";
+	Palindromo(cadena);
+    return EXIT_SUCCESS;
+}
+
+
