@@ -30,7 +30,6 @@ void Cola_Prioridad::insertar(int dato){
 	if (arreglo[0] == 1){
 		arreglo[0]=2;
 		arreglo[1]=dato;
-		cout<<"hola";
 	}else{
 		int posactivo=arreglo[0];
 		int padre =arreglo[0]/2;
@@ -40,7 +39,6 @@ void Cola_Prioridad::insertar(int dato){
 				arreglo[padre]=dato;
 				padre=padre/2;
 				posactivo=padre;
-				cout<<"hola";
 			}else{
 				arreglo[posactivo]=dato;
 				padre=0;	
@@ -49,9 +47,22 @@ void Cola_Prioridad::insertar(int dato){
 		arreglo[0]=arreglo[0]+1;
 	}
 }
-
-
-
+int Cola_Prioridad::atender(){
+	int aux=0;
+	int posactiva=1;
+	int posizq=posactiva*2;
+	int posder=(posactiva*2)+1;
+	aux=arreglo[arreglo[0]-1];
+	while(posizq<arreglo[0] || posder<arreglo[0]){
+		if(arreglo[posizq]>arreglo[posder]){
+			arreglo[posactiva]=arreglo[posizq];
+			posactiva=posizq;
+		}else{
+			arreglo[posactiva]=arreglo[posder];
+			posactiva=posder;
+		}
+	}
+	arreglo[0]=arreglo[0]-1;
+}
 
 #endif
-
