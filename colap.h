@@ -57,11 +57,14 @@ int Cola_Prioridad::atender(){
 		if(arreglo[posizq]>arreglo[posder]){
 			arreglo[posactiva]=arreglo[posizq];
 			posactiva=posizq;
+			
 		}else{
 			arreglo[posactiva]=arreglo[posder];
 			posactiva=posder;
+			
 		}
 	}
+	arreglo[posactiva]=aux;
 	arreglo[0]=arreglo[0]-1;
 }
 
